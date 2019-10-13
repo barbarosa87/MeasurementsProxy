@@ -1,0 +1,2431 @@
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://diagnostic.ws.solvatio.iisy.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="DiagnosticService" targetNamespace="http://diagnostic.ws.solvatio.iisy.com/">
+  <wsdl:types>
+<xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://diagnostic.ws.solvatio.iisy.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://jaxb.dev.java.net/array" version="1.0">
+
+  
+  <xs:complexType final="#all" name="stringArray">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+
+
+</xs:schema>
+<xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://diagnostic.ws.solvatio.iisy.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://diagnostic.ws.solvatio.iisy.com/">
+  
+  <xs:element name="closeCase" type="tns:closeCase"></xs:element>
+  
+  <xs:element name="closeCaseResponse" type="tns:closeCaseResponse"></xs:element>
+  
+  <xs:element name="closeSession" type="tns:closeSession"></xs:element>
+  
+  <xs:element name="closeSessionResponse" type="tns:closeSessionResponse"></xs:element>
+  
+  <xs:element name="getAppForm" type="tns:getAppForm"></xs:element>
+  
+  <xs:element name="getAppFormResponse" type="tns:getAppFormResponse"></xs:element>
+  
+  <xs:element name="getEvents" type="tns:getEvents"></xs:element>
+  
+  <xs:element name="getEventsResponse" type="tns:getEventsResponse"></xs:element>
+  
+  <xs:element name="getForms" type="tns:getForms"></xs:element>
+  
+  <xs:element name="getFormsResponse" type="tns:getFormsResponse"></xs:element>
+  
+  <xs:element name="getProcessMenu" type="tns:getProcessMenu"></xs:element>
+  
+  <xs:element name="getProcessMenuResponse" type="tns:getProcessMenuResponse"></xs:element>
+  
+  <xs:element name="getSessionState" type="tns:getSessionState"></xs:element>
+  
+  <xs:element name="getSessionStateResponse" type="tns:getSessionStateResponse"></xs:element>
+  
+  <xs:element name="getTopology" type="tns:getTopology"></xs:element>
+  
+  <xs:element name="getTopologyResponse" type="tns:getTopologyResponse"></xs:element>
+  
+  <xs:element name="resumeCase" type="tns:resumeCase"></xs:element>
+  
+  <xs:element name="resumeCaseResponse" type="tns:resumeCaseResponse"></xs:element>
+  
+  <xs:element name="rollbackProcess" type="tns:rollbackProcess"></xs:element>
+  
+  <xs:element name="rollbackProcessResponse" type="tns:rollbackProcessResponse"></xs:element>
+  
+  <xs:element name="setLocale" type="tns:setLocale"></xs:element>
+  
+  <xs:element name="setLocaleResponse" type="tns:setLocaleResponse"></xs:element>
+  
+  <xs:element name="startCase" type="tns:startCase"></xs:element>
+  
+  <xs:element name="startCaseResponse" type="tns:startCaseResponse"></xs:element>
+  
+  <xs:element name="startProcess" type="tns:startProcess"></xs:element>
+  
+  <xs:element name="startProcessResponse" type="tns:startProcessResponse"></xs:element>
+  
+  <xs:element name="submitFeedback" type="tns:submitFeedback"></xs:element>
+  
+  <xs:element name="submitFeedbackResponse" type="tns:submitFeedbackResponse"></xs:element>
+  
+  <xs:element name="submitForms" type="tns:submitForms"></xs:element>
+  
+  <xs:element name="submitFormsResponse" type="tns:submitFormsResponse"></xs:element>
+  
+  <xs:complexType name="getTopology">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element name="topologyId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getTopologyResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:topology"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="topology">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="sections" nillable="true" type="tns:topologySection"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="topologySection">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="components" nillable="true" type="tns:topologyComponent"></xs:element>
+      
+      <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+      
+      <xs:element name="id" type="xs:string"></xs:element>
+      
+      <xs:element name="title" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="topologyComponent">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additions" nillable="true" type="tns:topologyAddition"></xs:element>
+      
+      <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+      
+      <xs:element name="id" type="xs:string"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="menuItems" nillable="true" type="tns:topologyComponentMenuItem"></xs:element>
+      
+      <xs:element name="name" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="state" type="tns:topologyComponentState"></xs:element>
+      
+      <xs:element minOccurs="0" name="type" type="xs:string"></xs:element>
+      
+      <xs:element name="visible" type="xs:boolean"></xs:element>
+      
+      <xs:element name="x" type="xs:int"></xs:element>
+      
+      <xs:element name="y" type="xs:int"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="topologyAddition">
+    
+    <xs:sequence>
+      
+      <xs:element name="key" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="topologyComponentMenuItem">
+    
+    <xs:sequence>
+      
+      <xs:element name="enabled" type="xs:boolean"></xs:element>
+      
+      <xs:element minOccurs="0" name="id" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="processDefinitionId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="topologyComponentState">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="id" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="DiagnosticServiceFault">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="errorCode" type="tns:errorCode"></xs:element>
+      
+      <xs:element minOccurs="0" name="errorCategory" type="tns:errorCategory"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="TopologyNotFoundFault">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="errorCode" type="tns:errorCode"></xs:element>
+      
+      <xs:element minOccurs="0" name="errorCategory" type="tns:errorCategory"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="resumeCase">
+    
+    <xs:sequence>
+      
+      <xs:element name="caseId" type="xs:string"></xs:element>
+      
+      <xs:element name="user" type="tns:userData"></xs:element>
+      
+      <xs:element name="locale" type="tns:locale"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="startParameters" type="tns:startParameter"></xs:element>
+      
+      <xs:element minOccurs="0" name="applicationId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="userData">
+    
+    <xs:sequence>
+      
+      <xs:element name="name" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="organizationUnit" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="displayName" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="email" type="xs:string"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="extendedData">
+        
+        <xs:complexType>
+          
+          <xs:sequence>
+            
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+              
+              <xs:complexType>
+                
+                <xs:sequence>
+                  
+                  <xs:element minOccurs="0" name="key" type="xs:string"></xs:element>
+                  
+                  <xs:element minOccurs="0" name="value" type="xs:anyType"></xs:element>
+                
+                </xs:sequence>
+              
+              </xs:complexType>
+            
+            </xs:element>
+          
+          </xs:sequence>
+        
+        </xs:complexType>
+      
+      </xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="locale">
+    
+    <xs:sequence>
+      
+      <xs:element name="localeCode" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="startParameter">
+    
+    <xs:sequence>
+      
+      <xs:element name="key" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="value" type="xs:anyType"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="resumeCaseResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:sessionState"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="sessionState">
+    
+    <xs:sequence>
+      
+      <xs:element name="caseId" type="xs:string"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="processStates" nillable="true" type="tns:processState"></xs:element>
+      
+      <xs:element name="token" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="processState">
+    
+    <xs:sequence>
+      
+      <xs:element name="numberOfEvents" type="xs:int"></xs:element>
+      
+      <xs:element name="processDefinitionId" type="xs:string"></xs:element>
+      
+      <xs:element name="processId" type="xs:string"></xs:element>
+      
+      <xs:element name="state" type="tns:state"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="closeCase">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="metaData" type="tns:metaProperty"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="metaProperty">
+    
+    <xs:sequence>
+      
+      <xs:element name="key" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="closeCaseResponse">
+    
+    <xs:sequence></xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getForms">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="processId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getFormsResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:formPage"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="formPage">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="forms" nillable="true" type="tns:form"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="form">
+    
+    <xs:sequence>
+      
+      <xs:element name="id" type="xs:string"></xs:element>
+      
+      <xs:element name="processId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="questionForm">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:form">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="conclusion" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="introduction" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="prompt" type="xs:string"></xs:element>
+          
+          <xs:element name="required" type="xs:boolean"></xs:element>
+          
+          <xs:element name="title" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="validator" type="tns:validator"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="validator">
+    
+    <xs:sequence></xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="regExValidator">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:validator">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+          
+          <xs:element name="regEx" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="minMaxValidator">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:validator">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="max" type="xs:anyType"></xs:element>
+          
+          <xs:element minOccurs="0" name="min" type="xs:anyType"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="expressionValidator">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:validator">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="singleChoiceQuestionForm">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:choiceQuestionForm">
+        
+        <xs:sequence></xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="choiceQuestionForm">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:questionForm">
+        
+        <xs:sequence>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="options" nillable="true" type="tns:option"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="option">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+      
+      <xs:element name="id" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="label" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="multipleChoiceQuestionForm">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:choiceQuestionForm">
+        
+        <xs:sequence></xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType final="extension restriction" name="textQuestionForm">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:questionForm">
+        
+        <xs:sequence>
+          
+          <xs:element name="rows" type="xs:int"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="numberQuestionForm">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:questionForm">
+        
+        <xs:sequence>
+          
+          <xs:element name="inputType" type="tns:numberInputType"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="dateQuestionForm">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:questionForm">
+        
+        <xs:sequence>
+          
+          <xs:element name="inputType" type="tns:dateInputType"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="messageForm">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:form">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="content" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="messageType" type="tns:messageType"></xs:element>
+          
+          <xs:element name="title" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="dynamicForm">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:form">
+        
+        <xs:sequence>
+          
+          <xs:element name="root" type="tns:formElement"></xs:element>
+          
+          <xs:element name="title" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="formElement">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="layoutConstraints" type="tns:layoutConstraints"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="styles" nillable="true" type="xs:string"></xs:element>
+      
+      <xs:element name="visible" type="xs:boolean"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="layoutConstraints">
+    
+    <xs:sequence></xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="gridLayoutConstraints">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:layoutConstraints">
+        
+        <xs:sequence>
+          
+          <xs:element name="col" type="xs:int"></xs:element>
+          
+          <xs:element name="colSpan" type="xs:int"></xs:element>
+          
+          <xs:element name="row" type="xs:int"></xs:element>
+          
+          <xs:element name="rowSpan" type="xs:int"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="horizontalLayoutConstraints">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:layoutConstraints">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="height" type="tns:size"></xs:element>
+          
+          <xs:element minOccurs="0" name="width" type="tns:size"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="size">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="unit" type="tns:unit"></xs:element>
+      
+      <xs:element name="value" type="xs:int"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="verticalLayoutConstraints">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:layoutConstraints">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="height" type="tns:size"></xs:element>
+          
+          <xs:element minOccurs="0" name="width" type="tns:size"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="label">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="richText">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="indicator">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="label" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="labelPosition" type="tns:labelPosition"></xs:element>
+          
+          <xs:element name="showIcon" type="xs:boolean"></xs:element>
+          
+          <xs:element name="showLabel" type="xs:boolean"></xs:element>
+          
+          <xs:element name="value" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="iterator">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="children" nillable="true" type="tns:formElement"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="text">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="abstractContainer">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="children" nillable="true" type="tns:formElement"></xs:element>
+          
+          <xs:element minOccurs="0" name="layout" type="tns:layout"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="layout">
+    
+    <xs:sequence></xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="gridLayout">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:layout">
+        
+        <xs:sequence>
+          
+          <xs:element name="columns" type="xs:int"></xs:element>
+          
+          <xs:element name="rows" type="xs:int"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="horizontalLayout">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:layout">
+        
+        <xs:sequence></xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="verticalLayout">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:layout">
+        
+        <xs:sequence></xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="container">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:abstractContainer">
+        
+        <xs:sequence></xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="abstractPanel">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="caption" type="xs:string"></xs:element>
+          
+          <xs:element name="content" type="tns:formElement"></xs:element>
+          
+          <xs:element minOccurs="0" name="status" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="togglePanel">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:abstractPanel">
+        
+        <xs:sequence>
+          
+          <xs:element name="expanded" type="xs:boolean"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="panel">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:abstractPanel">
+        
+        <xs:sequence></xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="separator">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="height" type="tns:size"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="link">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="caption" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="height" type="tns:size"></xs:element>
+          
+          <xs:element name="url" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="width" type="tns:size"></xs:element>
+          
+          <xs:element minOccurs="0" name="windowType" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="abstractMedia">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="height" type="tns:size"></xs:element>
+          
+          <xs:element minOccurs="0" name="title" type="xs:string"></xs:element>
+          
+          <xs:element name="url" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="width" type="tns:size"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="image">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:abstractMedia">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="alt" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="media">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:abstractMedia">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="mediaType" type="tns:mediaType"></xs:element>
+          
+          <xs:element minOccurs="0" name="mimeType" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="popupPanel">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element name="controlCaption" type="xs:string"></xs:element>
+          
+          <xs:element minOccurs="0" name="controlType" type="tns:controlType"></xs:element>
+          
+          <xs:element name="popupContainer" type="tns:container"></xs:element>
+          
+          <xs:element minOccurs="0" name="popupHeader" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="table">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element maxOccurs="unbounded" name="columns" type="tns:tableColumn"></xs:element>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="rows" nillable="true" type="tns:tableRow"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="tableColumn">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="header" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="tableRow">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" name="cells" type="tns:tableCell"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="tableCell">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="value" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="abstractTabPanel">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="tabs" nillable="true" type="tns:tab"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="tab">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="caption" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="content" type="tns:formElement"></xs:element>
+      
+      <xs:element minOccurs="0" name="status" type="xs:string"></xs:element>
+      
+      <xs:element name="visible" type="xs:boolean"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="accordionPanel">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:abstractTabPanel">
+        
+        <xs:sequence></xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="tabPanel">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:abstractTabPanel">
+        
+        <xs:sequence></xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="grid">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="rows" nillable="true" type="tns:gridRow"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="gridRow">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="cells" nillable="true" type="tns:gridCell"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="gridCell">
+    
+    <xs:sequence>
+      
+      <xs:element name="col" type="xs:int"></xs:element>
+      
+      <xs:element name="colSpan" type="xs:int"></xs:element>
+      
+      <xs:element minOccurs="0" name="content" type="tns:formElement"></xs:element>
+      
+      <xs:element name="row" type="xs:int"></xs:element>
+      
+      <xs:element name="rowSpan" type="xs:int"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="dataGrid">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:formElement">
+        
+        <xs:sequence>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="columns" nillable="true" type="tns:dataGridColumn"></xs:element>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="headerRows" nillable="true" type="tns:dataGridHeaderRow"></xs:element>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="rows" nillable="true" type="tns:dataGridRow"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="dataGridColumn">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="styles" nillable="true" type="xs:string"></xs:element>
+      
+      <xs:element name="visible" type="xs:boolean"></xs:element>
+      
+      <xs:element minOccurs="0" name="width" type="tns:size"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="dataGridHeaderRow">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="cells" nillable="true" type="tns:dataGridHeaderCell"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="styles" nillable="true" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="dataGridHeaderCell">
+    
+    <xs:sequence>
+      
+      <xs:element name="colSpan" type="xs:int"></xs:element>
+      
+      <xs:element minOccurs="0" name="content" type="tns:formElement"></xs:element>
+      
+      <xs:element name="rowSpan" type="xs:int"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="styles" nillable="true" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="dataGridRow">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="cells" nillable="true" type="tns:formElement"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getEvents">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element name="processId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getEventsResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:events"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="events">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="events" nillable="true" type="tns:event"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="event">
+    
+    <xs:sequence>
+      
+      <xs:element name="name" type="xs:string"></xs:element>
+      
+      <xs:element name="timestamp" type="xs:long"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="signalEvent">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:event">
+        
+        <xs:sequence></xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="submitForms">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" name="submissions" type="tns:formSubmission"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="formSubmission">
+    
+    <xs:sequence>
+      
+      <xs:element name="formId" type="xs:string"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="values" nillable="true" type="tns:inputValue"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="inputValue">
+    
+    <xs:sequence>
+      
+      <xs:element name="key" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="value" type="xs:anyType"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="submitFormsResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:sessionState"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="ValidationFault">
+    
+    <xs:sequence>
+      
+      <xs:element name="errors" nillable="true" type="tns:ValidationErrors"></xs:element>
+      
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="ValidationErrors">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="errors" nillable="true" type="tns:validationError"></xs:element>
+      
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="validationError">
+    
+    <xs:sequence>
+      
+      <xs:element name="errorMessage" type="xs:string"></xs:element>
+      
+      <xs:element name="formId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getProcessMenu">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="menuFormId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getProcessMenuResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:processMenuForm"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="processMenuForm">
+    
+    <xs:sequence>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="items" nillable="true" type="tns:abstractMenuItem"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType abstract="true" name="abstractMenuItem">
+    
+    <xs:sequence>
+      
+      <xs:element name="caption" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+      
+      <xs:element name="enabled" type="xs:boolean"></xs:element>
+      
+      <xs:element name="visible" type="xs:boolean"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="processItem">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:abstractMenuItem">
+        
+        <xs:sequence>
+          
+          <xs:element name="processDefinitionId" type="xs:string"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="processCategory">
+    
+    <xs:complexContent>
+      
+      <xs:extension base="tns:abstractMenuItem">
+        
+        <xs:sequence>
+          
+          <xs:element minOccurs="0" name="icon" type="xs:string"></xs:element>
+          
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="items" nillable="true" type="tns:abstractMenuItem"></xs:element>
+        
+        </xs:sequence>
+      
+      </xs:extension>
+    
+    </xs:complexContent>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getAppForm">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element name="formId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getAppFormResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:appForm"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="appForm">
+    
+    <xs:sequence>
+      
+      <xs:element name="id" type="xs:string"></xs:element>
+      
+      <xs:element name="root" type="tns:formElement"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="styles" nillable="true" type="xs:string"></xs:element>
+      
+      <xs:element name="visible" type="xs:boolean"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="closeSession">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="metaData" type="tns:metaProperty"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="closeSessionResponse">
+    
+    <xs:sequence></xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="rollbackProcess">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element name="steps" type="xs:int"></xs:element>
+      
+      <xs:element name="processId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="rollbackProcessResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:processState"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="submitFeedback">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element name="feedback" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="processId" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="context" type="tns:feedbackComponent"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="feedbackComponent">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="appFormId" type="xs:string"></xs:element>
+      
+      <xs:element minOccurs="0" name="id" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="submitFeedbackResponse">
+    
+    <xs:sequence></xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getSessionState">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="getSessionStateResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:sessionState"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="startProcess">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element name="processDefinitionId" type="xs:string"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="startParameters" type="tns:startParameter"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="startProcessResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:processState"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="setLocale">
+    
+    <xs:sequence>
+      
+      <xs:element name="wsToken" type="xs:string"></xs:element>
+      
+      <xs:element name="locale" type="tns:locale"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="setLocaleResponse">
+    
+    <xs:sequence></xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="startCase">
+    
+    <xs:sequence>
+      
+      <xs:element name="user" type="tns:userData"></xs:element>
+      
+      <xs:element name="locale" type="tns:locale"></xs:element>
+      
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="startParameters" type="tns:startParameter"></xs:element>
+      
+      <xs:element minOccurs="0" name="applicationId" type="xs:string"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:complexType name="startCaseResponse">
+    
+    <xs:sequence>
+      
+      <xs:element minOccurs="0" name="return" type="tns:sessionState"></xs:element>
+    
+    </xs:sequence>
+  
+  </xs:complexType>
+  
+  <xs:simpleType name="errorCode">
+    
+    <xs:restriction base="xs:string">
+      
+      <xs:enumeration value="INVALID_REQUEST"></xs:enumeration>
+      
+      <xs:enumeration value="INVALID_SESSION"></xs:enumeration>
+      
+      <xs:enumeration value="INVALID_CASE"></xs:enumeration>
+      
+      <xs:enumeration value="LOCALE_MISMATCH"></xs:enumeration>
+      
+      <xs:enumeration value="UNKNOWN_ELEMENT"></xs:enumeration>
+      
+      <xs:enumeration value="INVALID_OPERATION"></xs:enumeration>
+      
+      <xs:enumeration value="VALIDATION_ERROR"></xs:enumeration>
+      
+      <xs:enumeration value="SERVICE_ERROR"></xs:enumeration>
+      
+      <xs:enumeration value="KNOWLEDGEBASE_ERROR"></xs:enumeration>
+      
+      <xs:enumeration value="RUNTIME_ERROR"></xs:enumeration>
+    
+    </xs:restriction>
+  
+  </xs:simpleType>
+  
+  <xs:simpleType name="errorCategory">
+    
+    <xs:restriction base="xs:string">
+      
+      <xs:enumeration value="CLIENT"></xs:enumeration>
+      
+      <xs:enumeration value="RUNTIME"></xs:enumeration>
+      
+      <xs:enumeration value="KNOWLEGEBASE"></xs:enumeration>
+    
+    </xs:restriction>
+  
+  </xs:simpleType>
+  
+  <xs:simpleType name="state">
+    
+    <xs:restriction base="xs:string">
+      
+      <xs:enumeration value="idle"></xs:enumeration>
+      
+      <xs:enumeration value="inProgress"></xs:enumeration>
+      
+      <xs:enumeration value="terminated"></xs:enumeration>
+    
+    </xs:restriction>
+  
+  </xs:simpleType>
+  
+  <xs:simpleType name="numberInputType">
+    
+    <xs:restriction base="xs:string">
+      
+      <xs:enumeration value="integerInput"></xs:enumeration>
+      
+      <xs:enumeration value="floatInput"></xs:enumeration>
+    
+    </xs:restriction>
+  
+  </xs:simpleType>
+  
+  <xs:simpleType name="dateInputType">
+    
+    <xs:restriction base="xs:string">
+      
+      <xs:enumeration value="time"></xs:enumeration>
+      
+      <xs:enumeration value="date"></xs:enumeration>
+      
+      <xs:enumeration value="dateTime"></xs:enumeration>
+    
+    </xs:restriction>
+  
+  </xs:simpleType>
+  
+  <xs:simpleType name="messageType">
+    
+    <xs:restriction base="xs:string">
+      
+      <xs:enumeration value="info"></xs:enumeration>
+      
+      <xs:enumeration value="warning"></xs:enumeration>
+      
+      <xs:enumeration value="error"></xs:enumeration>
+      
+      <xs:enumeration value="solution"></xs:enumeration>
+    
+    </xs:restriction>
+  
+  </xs:simpleType>
+  
+  <xs:simpleType name="unit">
+    
+    <xs:restriction base="xs:string">
+      
+      <xs:enumeration value="PIXELS"></xs:enumeration>
+      
+      <xs:enumeration value="PERCENTAGE"></xs:enumeration>
+    
+    </xs:restriction>
+  
+  </xs:simpleType>
+  
+  <xs:simpleType name="labelPosition">
+    
+    <xs:restriction base="xs:string">
+      
+      <xs:enumeration value="AFTER"></xs:enumeration>
+      
+      <xs:enumeration value="BEFORE"></xs:enumeration>
+    
+    </xs:restriction>
+  
+  </xs:simpleType>
+  
+  <xs:simpleType name="mediaType">
+    
+    <xs:restriction base="xs:string">
+      
+      <xs:enumeration value="UNDEFINED"></xs:enumeration>
+      
+      <xs:enumeration value="FLASH"></xs:enumeration>
+      
+      <xs:enumeration value="QUICKTIME"></xs:enumeration>
+      
+      <xs:enumeration value="WINDOWS_MEDIA"></xs:enumeration>
+    
+    </xs:restriction>
+  
+  </xs:simpleType>
+  
+  <xs:simpleType name="controlType">
+    
+    <xs:restriction base="xs:string">
+      
+      <xs:enumeration value="LINK"></xs:enumeration>
+      
+      <xs:enumeration value="BUTTON"></xs:enumeration>
+    
+    </xs:restriction>
+  
+  </xs:simpleType>
+  
+  <xs:element name="DiagnosticServiceFault" nillable="true" type="tns:DiagnosticServiceFault"></xs:element>
+  
+  <xs:element name="TopologyNotFoundFault" nillable="true" type="tns:TopologyNotFoundFault"></xs:element>
+  
+  <xs:element name="ValidationFault" nillable="true" type="tns:ValidationFault"></xs:element>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="closeSessionResponse">
+    <wsdl:part element="tns:closeSessionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rollbackProcessResponse">
+    <wsdl:part element="tns:rollbackProcessResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSessionState">
+    <wsdl:part element="tns:getSessionState" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DiagnosticServiceFault">
+    <wsdl:part element="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitFeedbackResponse">
+    <wsdl:part element="tns:submitFeedbackResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEvents">
+    <wsdl:part element="tns:getEvents" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ValidationFault">
+    <wsdl:part element="tns:ValidationFault" name="ValidationFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessMenuResponse">
+    <wsdl:part element="tns:getProcessMenuResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startProcess">
+    <wsdl:part element="tns:startProcess" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rollbackProcess">
+    <wsdl:part element="tns:rollbackProcess" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setLocale">
+    <wsdl:part element="tns:setLocale" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTopologyResponse">
+    <wsdl:part element="tns:getTopologyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitFormsResponse">
+    <wsdl:part element="tns:submitFormsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="closeSession">
+    <wsdl:part element="tns:closeSession" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startCaseResponse">
+    <wsdl:part element="tns:startCaseResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTopology">
+    <wsdl:part element="tns:getTopology" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitFeedback">
+    <wsdl:part element="tns:submitFeedback" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="closeCaseResponse">
+    <wsdl:part element="tns:closeCaseResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessMenu">
+    <wsdl:part element="tns:getProcessMenu" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startProcessResponse">
+    <wsdl:part element="tns:startProcessResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TopologyNotFoundFault">
+    <wsdl:part element="tns:TopologyNotFoundFault" name="TopologyNotFoundFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAppFormResponse">
+    <wsdl:part element="tns:getAppFormResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resumeCaseResponse">
+    <wsdl:part element="tns:resumeCaseResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getForms">
+    <wsdl:part element="tns:getForms" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getFormsResponse">
+    <wsdl:part element="tns:getFormsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEventsResponse">
+    <wsdl:part element="tns:getEventsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startCase">
+    <wsdl:part element="tns:startCase" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitForms">
+    <wsdl:part element="tns:submitForms" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setLocaleResponse">
+    <wsdl:part element="tns:setLocaleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="resumeCase">
+    <wsdl:part element="tns:resumeCase" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSessionStateResponse">
+    <wsdl:part element="tns:getSessionStateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="closeCase">
+    <wsdl:part element="tns:closeCase" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAppForm">
+    <wsdl:part element="tns:getAppForm" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DiagnosticService">
+    <wsdl:operation name="getTopology">
+<wsdl:documentation>Returns the topology for an existing session. The parameter topologyId must not be null and refers to the SOLVATiO variable whichs binds the topology model (usually the topologyId is "topology").</wsdl:documentation>
+      <wsdl:input message="tns:getTopology" name="getTopology">
+    </wsdl:input>
+      <wsdl:output message="tns:getTopologyResponse" name="getTopologyResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:TopologyNotFoundFault" name="TopologyNotFoundFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="resumeCase">
+<wsdl:documentation>Initiates a new web service session. If a SOLVATiO case with the specified caseId exists, a new session will be created for the existing case.</wsdl:documentation>
+      <wsdl:input message="tns:resumeCase" name="resumeCase">
+    </wsdl:input>
+      <wsdl:output message="tns:resumeCaseResponse" name="resumeCaseResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="closeCase">
+<wsdl:documentation>Closes the web service session and the underlying SOLVATiO case.</wsdl:documentation>
+      <wsdl:input message="tns:closeCase" name="closeCase">
+    </wsdl:input>
+      <wsdl:output message="tns:closeCaseResponse" name="closeCaseResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getForms">
+<wsdl:documentation>Returns a FormPage containing the pending dialog forms for a process with the given process id. If no process id is given, all pending forms are returned.</wsdl:documentation>
+      <wsdl:input message="tns:getForms" name="getForms">
+    </wsdl:input>
+      <wsdl:output message="tns:getFormsResponse" name="getFormsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEvents">
+<wsdl:documentation>Returns the (signal) events triggered by the process with the given process id.</wsdl:documentation>
+      <wsdl:input message="tns:getEvents" name="getEvents">
+    </wsdl:input>
+      <wsdl:output message="tns:getEventsResponse" name="getEventsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="submitForms">
+<wsdl:documentation>Submits the answers to one or more dialog forms. For each input element in each submitted form a input value may be provided.</wsdl:documentation>
+      <wsdl:input message="tns:submitForms" name="submitForms">
+    </wsdl:input>
+      <wsdl:output message="tns:submitFormsResponse" name="submitFormsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:ValidationFault" name="ValidationFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessMenu">
+<wsdl:documentation>Returns the process menu form specified by menuFormId</wsdl:documentation>
+      <wsdl:input message="tns:getProcessMenu" name="getProcessMenu">
+    </wsdl:input>
+      <wsdl:output message="tns:getProcessMenuResponse" name="getProcessMenuResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAppForm">
+<wsdl:documentation>Returns the application form specified by formId.</wsdl:documentation>
+      <wsdl:input message="tns:getAppForm" name="getAppForm">
+    </wsdl:input>
+      <wsdl:output message="tns:getAppFormResponse" name="getAppFormResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="closeSession">
+<wsdl:documentation>Closes the web service session. The underlying SOLVATiO case will not be closed.</wsdl:documentation>
+      <wsdl:input message="tns:closeSession" name="closeSession">
+    </wsdl:input>
+      <wsdl:output message="tns:closeSessionResponse" name="closeSessionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rollbackProcess">
+<wsdl:documentation>Performs a rollback of a process for a given number of steps.</wsdl:documentation>
+      <wsdl:input message="tns:rollbackProcess" name="rollbackProcess">
+    </wsdl:input>
+      <wsdl:output message="tns:rollbackProcessResponse" name="rollbackProcessResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="submitFeedback">
+<wsdl:documentation>Submits a feedback in the context of the given process</wsdl:documentation>
+      <wsdl:input message="tns:submitFeedback" name="submitFeedback">
+    </wsdl:input>
+      <wsdl:output message="tns:submitFeedbackResponse" name="submitFeedbackResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSessionState">
+<wsdl:documentation>Returns state information for the specified session. Session state provides details on the state of running process instances. To monitor the progress of long running operations you may poll the session state</wsdl:documentation>
+      <wsdl:input message="tns:getSessionState" name="getSessionState">
+    </wsdl:input>
+      <wsdl:output message="tns:getSessionStateResponse" name="getSessionStateResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startProcess">
+<wsdl:documentation>Starts a new process instance in the context of the web service session. The startParameters will be passed as input parameters to the new process instance.</wsdl:documentation>
+      <wsdl:input message="tns:startProcess" name="startProcess">
+    </wsdl:input>
+      <wsdl:output message="tns:startProcessResponse" name="startProcessResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setLocale">
+<wsdl:documentation>Changes the locale for the given web service session. The locale will be used for form rendering</wsdl:documentation>
+      <wsdl:input message="tns:setLocale" name="setLocale">
+    </wsdl:input>
+      <wsdl:output message="tns:setLocaleResponse" name="setLocaleResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startCase">
+<wsdl:documentation>Initiates a web service session. With this web service session a new SOLVATiO case is created and a SOLVATiO session is started with the given user information, locale and start parameters for auto start processes. The method returns a SessionState object that holds a token. This token is required for all consecutive web service method calls</wsdl:documentation>
+      <wsdl:input message="tns:startCase" name="startCase">
+    </wsdl:input>
+      <wsdl:output message="tns:startCaseResponse" name="startCaseResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DiagnosticServiceFault" name="DiagnosticServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DiagnosticServiceSoapBinding" type="tns:DiagnosticService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getTopology">
+      <soap:operation soapAction="urn:GetTopology" style="document"></soap:operation>
+      <wsdl:input name="getTopology">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getTopologyResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="TopologyNotFoundFault">
+        <soap:fault name="TopologyNotFoundFault" use="literal"></soap:fault>
+      </wsdl:fault>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="closeCase">
+      <soap:operation soapAction="urn:CloseCase" style="document"></soap:operation>
+      <wsdl:input name="closeCase">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="closeCaseResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="resumeCase">
+      <soap:operation soapAction="urn:ResumeCase" style="document"></soap:operation>
+      <wsdl:input name="resumeCase">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="resumeCaseResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEvents">
+      <soap:operation soapAction="urn:GetEvents" style="document"></soap:operation>
+      <wsdl:input name="getEvents">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getEventsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getForms">
+      <soap:operation soapAction="urn:GetForms" style="document"></soap:operation>
+      <wsdl:input name="getForms">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getFormsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessMenu">
+      <soap:operation soapAction="urn:GetProcessMenu" style="document"></soap:operation>
+      <wsdl:input name="getProcessMenu">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getProcessMenuResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="submitForms">
+      <soap:operation soapAction="urn:SubmitForms" style="document"></soap:operation>
+      <wsdl:input name="submitForms">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="submitFormsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="ValidationFault">
+        <soap:fault name="ValidationFault" use="literal"></soap:fault>
+      </wsdl:fault>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="closeSession">
+      <soap:operation soapAction="urn:CloseSession" style="document"></soap:operation>
+      <wsdl:input name="closeSession">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="closeSessionResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAppForm">
+      <soap:operation soapAction="urn:GetAppForm" style="document"></soap:operation>
+      <wsdl:input name="getAppForm">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAppFormResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rollbackProcess">
+      <soap:operation soapAction="urn:RollbackProcess" style="document"></soap:operation>
+      <wsdl:input name="rollbackProcess">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="rollbackProcessResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="submitFeedback">
+      <soap:operation soapAction="urn:SubmitFeedback" style="document"></soap:operation>
+      <wsdl:input name="submitFeedback">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="submitFeedbackResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSessionState">
+      <soap:operation soapAction="urn:GetSessionState" style="document"></soap:operation>
+      <wsdl:input name="getSessionState">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getSessionStateResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setLocale">
+      <soap:operation soapAction="urn:SetLocale" style="document"></soap:operation>
+      <wsdl:input name="setLocale">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="setLocaleResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startProcess">
+      <soap:operation soapAction="urn:StartProcess" style="document"></soap:operation>
+      <wsdl:input name="startProcess">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="startProcessResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startCase">
+      <soap:operation soapAction="urn:StartCase" style="document"></soap:operation>
+      <wsdl:input name="startCase">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="startCaseResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="DiagnosticServiceFault">
+        <soap:fault name="DiagnosticServiceFault" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DiagnosticService">
+    <wsdl:port binding="tns:DiagnosticServiceSoapBinding" name="DiagnosticServicePort">
+      <soap:address location="http://10.101.103.124:8080/helpdesk/webservice/diag"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
