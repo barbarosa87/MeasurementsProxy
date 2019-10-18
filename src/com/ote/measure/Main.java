@@ -3,6 +3,7 @@ package com.ote.measure;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.iisy.solvatio.ws.diagnostic.AbstractMenuItem;
 import com.iisy.solvatio.ws.diagnostic.DiagnosticServiceFault;
@@ -16,6 +17,7 @@ import com.iisy.solvatio.ws.diagnostic.StartParameter;
 import com.iisy.solvatio.ws.diagnostic.UserData;
 import com.ote.measure.types.FlowItem;
 import com.ote.measure.types.GetAvailableFlowsResponse;
+import com.ote.measure.types.StartEntries;
 
 public class Main {
 
@@ -27,21 +29,25 @@ public class Main {
 
 	private int timeout = 30;
 	private int timeout_start = 0;
-
-	public GetAvailableFlowsResponse getAvailableFlows(String CLI, String Symptom, String User) {
+	//String CLI, String Symptom, String User
+	
+	
+	
+	
+	public GetAvailableFlowsResponse getAvailableFlows(StartEntries entries) {
 
 		//HashMap<String, String> result = new HashMap<>();
 
 		GetAvailableFlowsResponse getAvailableFlowsResponse=new GetAvailableFlowsResponse();
 		
 		DiagnosticServiceProxy diagnosticServiceProxy = startDiagnosticsService();
-		UserData userData = createUser(User);
+		UserData userData = createUser("User");
 		Locale locale = getLocale();
 
 		StartParameter[] startParameters = new StartParameter[3];
 
-		startParameters[0] = new StartParameter("CLI", CLI);
-		startParameters[1] = new StartParameter("Symptom", Symptom);
+		startParameters[0] = new StartParameter("CLI", "");
+		startParameters[1] = new StartParameter("Symptom", "");
 		startParameters[2] = new StartParameter("operation", "shops");
 		SessionState sessionState;
 		try {
@@ -84,6 +90,11 @@ public class Main {
 		}
 		return getAvailableFlowsResponse;
 
+	}
+
+	public Main() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	private ArrayList<FlowItem> getAvailableFlows(AbstractMenuItem[] abstractMenuItems) {
