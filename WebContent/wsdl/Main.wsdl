@@ -9,9 +9,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="getAvailableFlows">
     <complexType>
      <sequence>
-      <element name="CLI" type="xsd:string"/>
-      <element name="Symptom" type="xsd:string"/>
-      <element name="User" type="xsd:string"/>
+      <element name="entriesMap" type="apachesoap:Map"/>
      </sequence>
     </complexType>
    </element>

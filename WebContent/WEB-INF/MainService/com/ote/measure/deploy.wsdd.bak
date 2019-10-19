@@ -21,9 +21,7 @@
       <parameter name="wsdlPortType" value="Main"/>
       <parameter name="typeMappingVersion" value="1.2"/>
       <operation name="getAvailableFlows" qname="operNS:getAvailableFlows" xmlns:operNS="http://measure.ote.com" returnQName="retNS:getAvailableFlowsReturn" xmlns:retNS="http://measure.ote.com" returnType="rtns:GetAvailableFlowsResponse" xmlns:rtns="http://types.measure.ote.com" soapAction="" >
-        <parameter qname="pns:CLI" xmlns:pns="http://measure.ote.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:Symptom" xmlns:pns="http://measure.ote.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:User" xmlns:pns="http://measure.ote.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:entriesMap" xmlns:pns="http://measure.ote.com" type="tns:Map" xmlns:tns="http://xml.apache.org/xml-soap"/>
       </operation>
       <parameter name="allowedMethods" value="getAvailableFlows"/>
 

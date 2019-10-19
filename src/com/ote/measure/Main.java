@@ -1,6 +1,7 @@
 package com.ote.measure;
 
 import java.rmi.RemoteException;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,58 +30,59 @@ public class Main {
 
 	private int timeout = 30;
 	private int timeout_start = 0;
-	//String CLI, String Symptom, String User
+	// String CLI, String Symptom, String User
 	
-	
-	
-	
-	public GetAvailableFlowsResponse getAvailableFlows(StartEntries entries) {
 
-		//HashMap<String, String> result = new HashMap<>();
+	public GetAvailableFlowsResponse getAvailableFlows(HashMap<String, String> entriesMap) {
 
-		GetAvailableFlowsResponse getAvailableFlowsResponse=new GetAvailableFlowsResponse();
-		
+		// HashMap<String, String> result = new HashMap<>();
+
+		GetAvailableFlowsResponse getAvailableFlowsResponse = new GetAvailableFlowsResponse();
+
 		DiagnosticServiceProxy diagnosticServiceProxy = startDiagnosticsService();
 		UserData userData = createUser("User");
 		Locale locale = getLocale();
 
 		StartParameter[] startParameters = new StartParameter[3];
 
-		startParameters[0] = new StartParameter("CLI", "");
+		
+		
+		
+		//HashMap<String, String> entriesMap = getInputParameters(entries);
+		
+		startParameters[0] = new StartParameter("CLI", entriesMap.get("CLI"));
 		startParameters[1] = new StartParameter("Symptom", "");
 		startParameters[2] = new StartParameter("operation", "shops");
+		
+
 		SessionState sessionState;
 		try {
-		sessionState= diagnosticServiceProxy.startCase(userData, locale, startParameters, "WebService");
-		String token=sessionState.getToken();
-		
-		getAvailableFlowsResponse.setSessionID(sessionState.getCaseId());
-		getAvailableFlowsResponse.setToken(sessionState.getToken());
-		
-		
-		boolean state=checkifFlowOver(diagnosticServiceProxy, token);
-		if(state) {
-			
-			
-			AbstractMenuItem[] abstractMenuItems= diagnosticServiceProxy.getProcessMenu(sessionState.getToken(), "ShopForm.Shops");
-			
-			
-			ArrayList<FlowItem> flowsList=getAvailableFlows(abstractMenuItems);
-			
-			HashMap<String,String> resultMap=new HashMap<>();
-			for(FlowItem flowItem:flowsList){
-				resultMap.put(flowItem.getCaption(), flowItem.getDescription());
-			}
-			
+			sessionState = diagnosticServiceProxy.startCase(userData, locale, startParameters, "WebService");
+			String token = sessionState.getToken();
+
+			getAvailableFlowsResponse.setSessionID(sessionState.getCaseId());
+			getAvailableFlowsResponse.setToken(sessionState.getToken());
+
+			boolean state = checkifFlowOver(diagnosticServiceProxy, token);
+			if (state) {
+
+				AbstractMenuItem[] abstractMenuItems = diagnosticServiceProxy.getProcessMenu(sessionState.getToken(),
+						"ShopForm.Shops");
+
+				ArrayList<FlowItem> flowsList = getAvailableFlows(abstractMenuItems);
+
+				HashMap<String, String> resultMap = new HashMap<>();
+				for (FlowItem flowItem : flowsList) {
+					resultMap.put(flowItem.getCaption(), flowItem.getDescription());
+				}
+
 				getAvailableFlowsResponse.setFlowsList(resultMap);
-			
-		}else {
-			getAvailableFlowsResponse.setError("200");
-			getAvailableFlowsResponse.setErrorMessage("Process not terminated at timeout");
-		
-		}
-	
-		
+
+			} else {
+				getAvailableFlowsResponse.setError("200");
+				getAvailableFlowsResponse.setErrorMessage("Process not terminated at timeout");
+
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,6 +92,15 @@ public class Main {
 		}
 		return getAvailableFlowsResponse;
 
+	}
+
+	private HashMap<String, String> getInputParameters(StartEntries entries) {
+		HashMap<String, String> entriesMap=new HashMap<>();
+		for(int i=0;i<entries.getListEntries().length;i++) {
+			entriesMap.put( entries.getListEntries()[i].getKey(),entries.getListEntries()[i].getValue()) ;
+		}
+		return entriesMap;
+		
 	}
 
 	public Main() {
@@ -130,20 +141,19 @@ public class Main {
 
 	private ArrayList<AbstractMenuItem> getMenuItem(AbstractMenuItem[] abstractMenuItems) {
 		ArrayList<AbstractMenuItem> abstractMenuItemsList = new ArrayList<>();
-		if(abstractMenuItems!=null) {
-		for (int i = 0; i < abstractMenuItems.length; i++) {
-			if (abstractMenuItems[i] instanceof ProcessCategory) {
-				//if(((ProcessCategory) abstractMenuItems[i]).getItems()!=null) {
-					abstractMenuItemsList.addAll(getMenuItem(((ProcessCategory) abstractMenuItems[i]).getItems()));	
-				//}
-				
-			} else {
-				abstractMenuItemsList.add(abstractMenuItems[i]);
+		if (abstractMenuItems != null) {
+			for (int i = 0; i < abstractMenuItems.length; i++) {
+				if (abstractMenuItems[i] instanceof ProcessCategory) {
+					// if(((ProcessCategory) abstractMenuItems[i]).getItems()!=null) {
+					abstractMenuItemsList.addAll(getMenuItem(((ProcessCategory) abstractMenuItems[i]).getItems()));
+					// }
+
+				} else {
+					abstractMenuItemsList.add(abstractMenuItems[i]);
+
+				}
 
 			}
-		
-		
-		}
 		}
 		return abstractMenuItemsList;
 
