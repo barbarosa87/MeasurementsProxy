@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import com.iisy.solvatio.ws.diagnostic.AbstractMenuItem;
 
-public class GetAvailableFlowsResponse implements Serializable{
+public class GenericResponse implements Serializable{
 
 	
 	/**
