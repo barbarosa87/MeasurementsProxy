@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -33,10 +33,10 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="Main" provider="java:RPC" style="wrapped" use="literal">
-  <ns3:operation name="getAvailableFlows" qname="ns1:getAvailableFlows" returnQName="ns1:getAvailableFlowsReturn" returnType="ns2:GetAvailableFlowsResponse" soapAction="" xmlns:ns1="http://measure.ote.com" xmlns:ns2="http://types.measure.ote.com" xmlns:ns3="http://xml.apache.org/axis/wsdd/">
+  <ns3:operation name="start" qname="ns1:start" returnQName="ns1:startReturn" returnType="ns2:GenericResponse" soapAction="" xmlns:ns1="http://measure.ote.com" xmlns:ns2="http://types.measure.ote.com" xmlns:ns3="http://xml.apache.org/axis/wsdd/">
    <ns4:parameter qname="ns1:entriesMap" type="ns3:Map" xmlns:ns3="http://xml.apache.org/xml-soap" xmlns:ns4="http://xml.apache.org/axis/wsdd/"/>
   </ns3:operation>
-  <ns1:parameter name="allowedMethods" value="getAvailableFlows"/>
+  <ns1:parameter name="allowedMethods" value="start"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Main"/>
   <ns1:parameter name="className" value="com.ote.measure.Main"/>
@@ -44,7 +44,7 @@
   <ns1:parameter name="schemaQualified" value="http://measure.ote.com,http://types.measure.ote.com,http://xml.apache.org/xml-soap"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://measure.ote.com"/>
   <ns1:parameter name="wsdlServiceElement" value="MainService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns4:GetAvailableFlowsResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.ote.measure.types.GetAvailableFlowsResponse" xmlns:ns4="http://types.measure.ote.com"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns4:GenericResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.ote.measure.types.GenericResponse" xmlns:ns4="http://types.measure.ote.com"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

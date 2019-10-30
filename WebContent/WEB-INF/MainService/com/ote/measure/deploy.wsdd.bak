@@ -20,15 +20,15 @@
       <parameter name="className" value="com.ote.measure.MainSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="Main"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="getAvailableFlows" qname="operNS:getAvailableFlows" xmlns:operNS="http://measure.ote.com" returnQName="retNS:getAvailableFlowsReturn" xmlns:retNS="http://measure.ote.com" returnType="rtns:GetAvailableFlowsResponse" xmlns:rtns="http://types.measure.ote.com" soapAction="" >
+      <operation name="start" qname="operNS:start" xmlns:operNS="http://measure.ote.com" returnQName="retNS:startReturn" xmlns:retNS="http://measure.ote.com" returnType="rtns:GenericResponse" xmlns:rtns="http://types.measure.ote.com" soapAction="" >
         <parameter qname="pns:entriesMap" xmlns:pns="http://measure.ote.com" type="tns:Map" xmlns:tns="http://xml.apache.org/xml-soap"/>
       </operation>
-      <parameter name="allowedMethods" value="getAvailableFlows"/>
+      <parameter name="allowedMethods" value="start"/>
 
       <typeMapping
         xmlns:ns="http://types.measure.ote.com"
-        qname="ns:GetAvailableFlowsResponse"
-        type="java:com.ote.measure.types.GetAvailableFlowsResponse"
+        qname="ns:GenericResponse"
+        type="java:com.ote.measure.types.GenericResponse"
         serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
         deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
         encodingStyle=""

@@ -6,17 +6,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   <schema elementFormDefault="qualified" targetNamespace="http://measure.ote.com" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://xml.apache.org/xml-soap"/>
    <import namespace="http://types.measure.ote.com"/>
-   <element name="getAvailableFlows">
+   <element name="start">
     <complexType>
      <sequence>
       <element name="entriesMap" type="apachesoap:Map"/>
      </sequence>
     </complexType>
    </element>
-   <element name="getAvailableFlowsResponse">
+   <element name="startResponse">
     <complexType>
      <sequence>
-      <element name="getAvailableFlowsReturn" type="tns1:GetAvailableFlowsResponse"/>
+      <element name="startReturn" type="tns1:GenericResponse"/>
      </sequence>
     </complexType>
    </element>
@@ -37,7 +37,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://types.measure.ote.com" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://xml.apache.org/xml-soap"/>
-   <complexType name="GetAvailableFlowsResponse">
+   <complexType name="GenericResponse">
     <sequence>
      <element name="error" nillable="true" type="xsd:string"/>
      <element name="errorMessage" nillable="true" type="xsd:string"/>
@@ -49,17 +49,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="getAvailableFlowsResponse">
+   <wsdl:message name="startRequest">
 
-      <wsdl:part element="impl:getAvailableFlowsResponse" name="parameters">
+      <wsdl:part element="impl:start" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="getAvailableFlowsRequest">
+   <wsdl:message name="startResponse">
 
-      <wsdl:part element="impl:getAvailableFlows" name="parameters">
+      <wsdl:part element="impl:startResponse" name="parameters">
 
       </wsdl:part>
 
@@ -67,13 +67,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="Main">
 
-      <wsdl:operation name="getAvailableFlows">
+      <wsdl:operation name="start">
 
-         <wsdl:input message="impl:getAvailableFlowsRequest" name="getAvailableFlowsRequest">
+         <wsdl:input message="impl:startRequest" name="startRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getAvailableFlowsResponse" name="getAvailableFlowsResponse">
+         <wsdl:output message="impl:startResponse" name="startResponse">
 
        </wsdl:output>
 
@@ -85,17 +85,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="getAvailableFlows">
+      <wsdl:operation name="start">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getAvailableFlowsRequest">
+         <wsdl:input name="startRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getAvailableFlowsResponse">
+         <wsdl:output name="startResponse">
 
             <wsdlsoap:body use="literal"/>
 

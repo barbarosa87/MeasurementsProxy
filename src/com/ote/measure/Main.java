@@ -17,7 +17,7 @@ import com.iisy.solvatio.ws.diagnostic.SessionState;
 import com.iisy.solvatio.ws.diagnostic.StartParameter;
 import com.iisy.solvatio.ws.diagnostic.UserData;
 import com.ote.measure.types.FlowItem;
-import com.ote.measure.types.GetAvailableFlowsResponse;
+import com.ote.measure.types.GenericResponse;
 import com.ote.measure.types.StartEntries;
 
 public class Main {
@@ -33,65 +33,84 @@ public class Main {
 	// String CLI, String Symptom, String User
 	
 
-	public GetAvailableFlowsResponse getAvailableFlows(HashMap<String, String> entriesMap) {
-
-		// HashMap<String, String> result = new HashMap<>();
-
-		GetAvailableFlowsResponse getAvailableFlowsResponse = new GetAvailableFlowsResponse();
-
-		DiagnosticServiceProxy diagnosticServiceProxy = startDiagnosticsService();
-		UserData userData = createUser("User");
-		Locale locale = getLocale();
-
-		StartParameter[] startParameters = new StartParameter[3];
-
-		
-		
-		
-		//HashMap<String, String> entriesMap = getInputParameters(entries);
-		
-		startParameters[0] = new StartParameter("CLI", entriesMap.get("CLI"));
-		startParameters[1] = new StartParameter("Symptom", "");
-		startParameters[2] = new StartParameter("operation", "shops");
-		
-
-		SessionState sessionState;
-		try {
-			sessionState = diagnosticServiceProxy.startCase(userData, locale, startParameters, "WebService");
-			String token = sessionState.getToken();
-
-			getAvailableFlowsResponse.setSessionID(sessionState.getCaseId());
-			getAvailableFlowsResponse.setToken(sessionState.getToken());
-
-			boolean state = checkifFlowOver(diagnosticServiceProxy, token);
-			if (state) {
-
-				AbstractMenuItem[] abstractMenuItems = diagnosticServiceProxy.getProcessMenu(sessionState.getToken(),
-						"ShopForm.Shops");
-
-				ArrayList<FlowItem> flowsList = getAvailableFlows(abstractMenuItems);
-
-				HashMap<String, String> resultMap = new HashMap<>();
-				for (FlowItem flowItem : flowsList) {
-					resultMap.put(flowItem.getCaption(), flowItem.getDescription());
-				}
-
-				getAvailableFlowsResponse.setFlowsList(resultMap);
-
-			} else {
-				getAvailableFlowsResponse.setError("200");
-				getAvailableFlowsResponse.setErrorMessage("Process not terminated at timeout");
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			getAvailableFlowsResponse.setError("500");
-			getAvailableFlowsResponse.setErrorMessage("Could not connect to webService");
-
+	
+	public GenericResponse start(HashMap<String, String> entriesMap) {
+		String operation=entriesMap.get("operation");
+		GenericResponse genericResponse=new GenericResponse();
+		switch (operation) {
+		case "checkMassive":
+			genericResponse=checkMassive(entriesMap);
+		default:
+			genericResponse.setError("1");
+			genericResponse.setErrorMessage("No Operation Specified");
 		}
-		return getAvailableFlowsResponse;
+		return genericResponse;
+	}
+	
+//	public GenericResponse start(HashMap<String, String> entriesMap) {
+//
+//		// HashMap<String, String> result = new HashMap<>();
+//
+//		GenericResponse getAvailableFlowsResponse = new GenericResponse();
+//
+//		DiagnosticServiceProxy diagnosticServiceProxy = startDiagnosticsService();
+//		UserData userData = createUser("User");
+//		Locale locale = getLocale();
+//
+//		StartParameter[] startParameters = new StartParameter[3];
+//
+//		
+//		
+//		
+//		//HashMap<String, String> entriesMap = getInputParameters(entries);
+//		
+//		startParameters[0] = new StartParameter("CLI", entriesMap.get("CLI"));
+//		startParameters[1] = new StartParameter("Symptom", "");
+//		startParameters[2] = new StartParameter("operation", "shops");
+//		
+//
+//		SessionState sessionState;
+//		try {
+//			sessionState = diagnosticServiceProxy.startCase(userData, locale, startParameters, "WebService");
+//			String token = sessionState.getToken();
+//
+//			getAvailableFlowsResponse.setSessionID(sessionState.getCaseId());
+//			getAvailableFlowsResponse.setToken(sessionState.getToken());
+//
+//			boolean state = checkifFlowOver(diagnosticServiceProxy, token);
+//			if (state) {
+//
+//				AbstractMenuItem[] abstractMenuItems = diagnosticServiceProxy.getProcessMenu(sessionState.getToken(),
+//						"ShopForm.Shops");
+//
+//				ArrayList<FlowItem> flowsList = getAvailableFlows(abstractMenuItems);
+//
+//				HashMap<String, String> resultMap = new HashMap<>();
+//				for (FlowItem flowItem : flowsList) {
+//					resultMap.put(flowItem.getCaption(), flowItem.getDescription());
+//				}
+//
+//				getAvailableFlowsResponse.setFlowsList(resultMap);
+//
+//			} else {
+//				getAvailableFlowsResponse.setError("200");
+//				getAvailableFlowsResponse.setErrorMessage("Process not terminated at timeout");
+//
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			getAvailableFlowsResponse.setError("500");
+//			getAvailableFlowsResponse.setErrorMessage("Could not connect to webService");
+//
+//		}
+//		return getAvailableFlowsResponse;
+//
+//	}
 
+	private GenericResponse checkMassive(HashMap<String, String> entriesMap) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private HashMap<String, String> getInputParameters(StartEntries entries) {
