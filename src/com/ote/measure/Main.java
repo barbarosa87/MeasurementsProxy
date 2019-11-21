@@ -30,7 +30,7 @@ public class Main {
 	 * return null; }
 	 */
 
-	private int timeout = 30;
+	private int timeout = 60;
 	private int timeout_start = 0;
 	private HashMap<String, String> serversMap = new HashMap<>();
 	// String CLI, String Symptom, String User
@@ -50,6 +50,8 @@ public class Main {
 
 	public TopologyResponse getTopology(String CLI, String token, String sessionID) {
 		TopologyResponse topologyResponse = new TopologyResponse();
+		topologyResponse.setToken(token);
+		topologyResponse.setSessionID(sessionID);
 		if (token != null && sessionID != null) {
 			topologyResponse = checkTokenTopology(token, sessionID);
 		} else {
@@ -71,18 +73,22 @@ public class Main {
 					if (topologySecions[i].getTitle().equalsIgnoreCase("services")) {
 						for (int j = 0; j < topologySecions[i].getComponents().length; j++) {
 							topologyResponse.getServicesMap().put(topologySecions[i].getComponents()[j].getId(),
-									topologySecions[i].getComponents()[j].getState().toString());
+									topologySecions[i].getComponents()[j].getState().getId());
 						}
 
 					} else if (topologySecions[i].getTitle().equalsIgnoreCase("network")) {
 						for (int j = 0; j < topologySecions[i].getComponents().length; j++) {
 							topologyResponse.getNetworkMap().put(topologySecions[i].getComponents()[j].getId(),
-									topologySecions[i].getComponents()[j].getState().toString());
+									topologySecions[i].getComponents()[j].getState().getId());
 						}
 					}
 				}
+			}else {
+				topologyResponse.setError("02");
+				topologyResponse.setErrorMessage("Timeout geting response");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			topologyResponse.setError("01");
 			topologyResponse.setErrorMessage(e.getMessage());
 		}
@@ -236,7 +242,7 @@ public class Main {
 
 		for (int i = 0; i < sessionState.getProcessStates().length; i++) {
 			ProcessState processState = sessionState.getProcessStates(i);
-			if (!processState.getState().toString().equalsIgnoreCase("terminated")) {
+			if (!processState.getState().getValue().equalsIgnoreCase("terminated")) {
 				if (timeout_start < timeout) {
 					Thread.sleep(5000);
 					timeout_start = timeout_start + 5;
@@ -244,9 +250,11 @@ public class Main {
 				} else {
 					return false;
 				}
+			}else {
+				return true;
 			}
 		}
-		return true;
+		return false;
 
 	}
 

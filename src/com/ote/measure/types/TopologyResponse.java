@@ -8,8 +8,8 @@ public class TopologyResponse {
 	private String sessionID;
 	private String error;
 	private String errorMessage;
-	private HashMap<String,String> ServicesMap;
-	private HashMap<String,String> NetworkMap;
+	private HashMap<String,String> ServicesMap=new HashMap<String, String>();
+	private HashMap<String,String> NetworkMap=new HashMap<String, String>();
 	public String getToken() {
 		return token;
 	}
