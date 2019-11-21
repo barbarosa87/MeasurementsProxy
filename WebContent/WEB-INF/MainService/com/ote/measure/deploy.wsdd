@@ -13,8 +13,14 @@
       <operation xmlns:operNS="http://measure.ote.com" xmlns:retNS="http://measure.ote.com" xmlns:rtns="http://types.measure.ote.com" name="start" qname="operNS:start" returnQName="retNS:startReturn" returnType="rtns:GenericResponse" soapAction="">
         <parameter xmlns:pns="http://measure.ote.com" xmlns:tns="http://xml.apache.org/xml-soap" qname="pns:entriesMap" type="tns:Map"/>
       </operation>
-      <parameter name="allowedMethods" value="start"/>
+      <operation xmlns:operNS="http://measure.ote.com" xmlns:retNS="http://measure.ote.com" xmlns:rtns="http://types.measure.ote.com" name="getTopology" qname="operNS:getTopology" returnQName="retNS:getTopologyReturn" returnType="rtns:TopologyResponse" soapAction="">
+        <parameter xmlns:pns="http://measure.ote.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:CLI" type="tns:string"/>
+        <parameter xmlns:pns="http://measure.ote.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:token" type="tns:string"/>
+        <parameter xmlns:pns="http://measure.ote.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:sessionID" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getTopology start"/>
 
       <typeMapping xmlns:ns="http://types.measure.ote.com" qname="ns:GenericResponse" type="java:com.ote.measure.types.GenericResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://types.measure.ote.com" qname="ns:TopologyResponse" type="java:com.ote.measure.types.TopologyResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
   </service>
 </deployment>

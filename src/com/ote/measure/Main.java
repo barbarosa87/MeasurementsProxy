@@ -15,10 +15,12 @@ import com.iisy.solvatio.ws.diagnostic.ProcessItem;
 import com.iisy.solvatio.ws.diagnostic.ProcessState;
 import com.iisy.solvatio.ws.diagnostic.SessionState;
 import com.iisy.solvatio.ws.diagnostic.StartParameter;
+import com.iisy.solvatio.ws.diagnostic.TopologySection;
 import com.iisy.solvatio.ws.diagnostic.UserData;
 import com.ote.measure.types.FlowItem;
 import com.ote.measure.types.GenericResponse;
 import com.ote.measure.types.StartEntries;
+import com.ote.measure.types.TopologyResponse;
 
 public class Main {
 
@@ -30,23 +32,50 @@ public class Main {
 
 	private int timeout = 30;
 	private int timeout_start = 0;
+	private HashMap<String, String> serversMap = new HashMap<>();
 	// String CLI, String Symptom, String User
-	
 
-	
 	public GenericResponse start(HashMap<String, String> entriesMap) {
-		String operation=entriesMap.get("operation");
-		GenericResponse genericResponse=new GenericResponse();
+		String operation = entriesMap.get("operation");
+		GenericResponse genericResponse = new GenericResponse();
 		switch (operation) {
 		case "checkMassive":
-			genericResponse=checkMassive(entriesMap);
+			genericResponse = checkMassive(entriesMap);
 		default:
 			genericResponse.setError("1");
 			genericResponse.setErrorMessage("No Operation Specified");
 		}
 		return genericResponse;
 	}
-	
+
+	public TopologyResponse getTopology(String CLI, String token, String sessionID) {
+		TopologyResponse topologyResponse = new TopologyResponse();
+		if (token != null && sessionID != null) {
+			topologyResponse = checkTokenTopology(token,sessionID);
+		} else {
+
+		}
+		return topologyResponse;
+
+	}
+
+	private TopologyResponse checkTokenTopology(String token,String sessionID) {
+		TopologyResponse topologyResponse = new TopologyResponse();
+		
+		DiagnosticServiceProxy diagnosticServiceProxy = startDiagnosticsService(sessionID);
+		try {
+			boolean flowOver=checkifFlowOver(diagnosticServiceProxy, token);
+			if (flowOver) {
+				TopologySection[] topologySecions=diagnosticServiceProxy.getTopology(token, "topology");
+			}
+		} catch (Exception e) {
+			topologyResponse.setError("01");
+			topologyResponse.setErrorMessage(e.getMessage());
+		} 
+		
+		return null;
+	}
+
 //	public GenericResponse start(HashMap<String, String> entriesMap) {
 //
 //		// HashMap<String, String> result = new HashMap<>();
@@ -114,12 +143,12 @@ public class Main {
 	}
 
 	private HashMap<String, String> getInputParameters(StartEntries entries) {
-		HashMap<String, String> entriesMap=new HashMap<>();
-		for(int i=0;i<entries.getListEntries().length;i++) {
-			entriesMap.put( entries.getListEntries()[i].getKey(),entries.getListEntries()[i].getValue()) ;
+		HashMap<String, String> entriesMap = new HashMap<>();
+		for (int i = 0; i < entries.getListEntries().length; i++) {
+			entriesMap.put(entries.getListEntries()[i].getKey(), entries.getListEntries()[i].getValue());
 		}
 		return entriesMap;
-		
+
 	}
 
 	public Main() {
@@ -222,10 +251,35 @@ public class Main {
 		return userData;
 	}
 
-	private DiagnosticServiceProxy startDiagnosticsService() {
-		DiagnosticServiceProxy diagnosticServiceProxy = new DiagnosticServiceProxy(
-				"http://10.101.103.124:8080/helpdesk/webservice/diag");
-		return diagnosticServiceProxy;
+	private DiagnosticServiceProxy startDiagnosticsService(String SessionID) {
+		if (SessionID == null) {
+			DiagnosticServiceProxy diagnosticServiceProxy = new DiagnosticServiceProxy(
+					"http://localhost:8080/helpdesk/webservice/diag");
+			return diagnosticServiceProxy;
+		} else {
+			setServers("UAT");
+			String[] arrOfStr = SessionID.split("-", 2);
+			DiagnosticServiceProxy diagnosticServiceProxy = new DiagnosticServiceProxy(
+					"http://"+serversMap.get(arrOfStr[0])+":8080/helpdesk/webservice/diag");
+			return diagnosticServiceProxy;
+
+		}
+
+	}
+
+	private void setServers(String env) {
+		if (env.equalsIgnoreCase("PROD")) {
+			serversMap.put("prod1", "solvrs01");
+			serversMap.put("prod2", "solvrs02");
+			serversMap.put("prod3", "solvrs03");
+			serversMap.put("prod4", "solvrs04");
+			serversMap.put("prod5", "solvrs05");
+			serversMap.put("prod6", "solvrs06");
+			serversMap.put("prod7", "solvrs07");
+		} else if (env.equalsIgnoreCase("UAT")) {
+			serversMap.put("uat1", "solvatioupuat1");
+			serversMap.put("uat2", "solvatioupuat2");
+		}
 	}
 
 }

@@ -20,6 +20,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="getTopology">
+    <complexType>
+     <sequence>
+      <element name="CLI" type="xsd:string"/>
+      <element name="token" type="xsd:string"/>
+      <element name="sessionID" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTopologyResponse">
+    <complexType>
+     <sequence>
+      <element name="getTopologyReturn" type="tns1:TopologyResponse"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://xml.apache.org/xml-soap" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://types.measure.ote.com"/>
@@ -46,6 +62,16 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="token" nillable="true" type="xsd:string"/>
     </sequence>
    </complexType>
+   <complexType name="TopologyResponse">
+    <sequence>
+     <element name="error" nillable="true" type="xsd:string"/>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+     <element name="networkMap" nillable="true" type="apachesoap:Map"/>
+     <element name="servicesMap" nillable="true" type="apachesoap:Map"/>
+     <element name="sessionID" nillable="true" type="xsd:string"/>
+     <element name="token" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
   </schema>
  </wsdl:types>
 
@@ -57,9 +83,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getTopologyResponse">
+
+      <wsdl:part element="impl:getTopologyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="startResponse">
 
       <wsdl:part element="impl:startResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTopologyRequest">
+
+      <wsdl:part element="impl:getTopology" name="parameters">
 
       </wsdl:part>
 
@@ -74,6 +116,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:startResponse" name="startResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTopology">
+
+         <wsdl:input message="impl:getTopologyRequest" name="getTopologyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getTopologyResponse" name="getTopologyResponse">
 
        </wsdl:output>
 
@@ -96,6 +150,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="startResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTopology">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTopologyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTopologyResponse">
 
             <wsdlsoap:body use="literal"/>
 
