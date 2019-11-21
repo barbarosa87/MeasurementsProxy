@@ -51,7 +51,7 @@ public class Main {
 	public TopologyResponse getTopology(String CLI, String token, String sessionID) {
 		TopologyResponse topologyResponse = new TopologyResponse();
 		if (token != null && sessionID != null) {
-			topologyResponse = checkTokenTopology(token,sessionID);
+			topologyResponse = checkTokenTopology(token, sessionID);
 		} else {
 
 		}
@@ -59,21 +59,35 @@ public class Main {
 
 	}
 
-	private TopologyResponse checkTokenTopology(String token,String sessionID) {
+	private TopologyResponse checkTokenTopology(String token, String sessionID) {
 		TopologyResponse topologyResponse = new TopologyResponse();
-		
+
 		DiagnosticServiceProxy diagnosticServiceProxy = startDiagnosticsService(sessionID);
 		try {
-			boolean flowOver=checkifFlowOver(diagnosticServiceProxy, token);
+			boolean flowOver = checkifFlowOver(diagnosticServiceProxy, token);
 			if (flowOver) {
-				TopologySection[] topologySecions=diagnosticServiceProxy.getTopology(token, "topology");
+				TopologySection[] topologySecions = diagnosticServiceProxy.getTopology(token, "topology");
+				for (int i = 0; i < topologySecions.length; i++) {
+					if (topologySecions[i].getTitle().equalsIgnoreCase("services")) {
+						for (int j = 0; j < topologySecions[i].getComponents().length; j++) {
+							topologyResponse.getServicesMap().put(topologySecions[i].getComponents()[j].getId(),
+									topologySecions[i].getComponents()[j].getState().toString());
+						}
+
+					} else if (topologySecions[i].getTitle().equalsIgnoreCase("network")) {
+						for (int j = 0; j < topologySecions[i].getComponents().length; j++) {
+							topologyResponse.getNetworkMap().put(topologySecions[i].getComponents()[j].getId(),
+									topologySecions[i].getComponents()[j].getState().toString());
+						}
+					}
+				}
 			}
 		} catch (Exception e) {
 			topologyResponse.setError("01");
 			topologyResponse.setErrorMessage(e.getMessage());
-		} 
-		
-		return null;
+		}
+
+		return topologyResponse;
 	}
 
 //	public GenericResponse start(HashMap<String, String> entriesMap) {
@@ -260,7 +274,7 @@ public class Main {
 			setServers("UAT");
 			String[] arrOfStr = SessionID.split("-", 2);
 			DiagnosticServiceProxy diagnosticServiceProxy = new DiagnosticServiceProxy(
-					"http://"+serversMap.get(arrOfStr[0])+":8080/helpdesk/webservice/diag");
+					"http://" + serversMap.get(arrOfStr[0]) + ":8080/helpdesk/webservice/diag");
 			return diagnosticServiceProxy;
 
 		}
