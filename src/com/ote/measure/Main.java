@@ -20,6 +20,7 @@ import com.iisy.solvatio.ws.diagnostic.UserData;
 import com.ote.measure.types.FlowItem;
 import com.ote.measure.types.GenericResponse;
 import com.ote.measure.types.StartEntries;
+import com.ote.measure.types.TopologyItem;
 import com.ote.measure.types.TopologyResponse;
 
 public class Main {
@@ -72,14 +73,24 @@ public class Main {
 				for (int i = 0; i < topologySecions.length; i++) {
 					if (topologySecions[i].getTitle().equalsIgnoreCase("services")) {
 						for (int j = 0; j < topologySecions[i].getComponents().length; j++) {
+							TopologyItem item=new TopologyItem();
+							item.setDescription(topologySecions[i].getComponents()[j].getDescription());
+							item.setName(topologySecions[i].getComponents()[j].getName());
+							item.setStateId(topologySecions[i].getComponents()[j].getState().getId());
+							item.setStateName(topologySecions[i].getComponents()[j].getState().getName());
 							topologyResponse.getServicesMap().put(topologySecions[i].getComponents()[j].getId(),
-									topologySecions[i].getComponents()[j].getState().getId());
+									item);
 						}
 
 					} else if (topologySecions[i].getTitle().equalsIgnoreCase("network")) {
 						for (int j = 0; j < topologySecions[i].getComponents().length; j++) {
+							TopologyItem item=new TopologyItem();
+							item.setDescription(topologySecions[i].getComponents()[j].getDescription());
+							item.setName(topologySecions[i].getComponents()[j].getName());
+							item.setStateId(topologySecions[i].getComponents()[j].getState().getId());
+							item.setStateName(topologySecions[i].getComponents()[j].getState().getName());
 							topologyResponse.getNetworkMap().put(topologySecions[i].getComponents()[j].getId(),
-									topologySecions[i].getComponents()[j].getState().getId());
+									item);
 						}
 					}
 				}

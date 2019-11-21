@@ -8,8 +8,8 @@ public class TopologyResponse {
 	private String sessionID;
 	private String error;
 	private String errorMessage;
-	private HashMap<String,String> ServicesMap=new HashMap<String, String>();
-	private HashMap<String,String> NetworkMap=new HashMap<String, String>();
+	private HashMap<String,TopologyItem> ServicesMap=new HashMap<String, TopologyItem>();
+	private HashMap<String,TopologyItem> NetworkMap=new HashMap<String, TopologyItem>();
 	public String getToken() {
 		return token;
 	}
@@ -34,16 +34,16 @@ public class TopologyResponse {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	public HashMap<String, String> getServicesMap() {
+	public HashMap<String, TopologyItem> getServicesMap() {
 		return ServicesMap;
 	}
-	public void setServicesMap(HashMap<String, String> servicesMap) {
+	public void setServicesMap(HashMap<String, TopologyItem> servicesMap) {
 		ServicesMap = servicesMap;
 	}
-	public HashMap<String, String> getNetworkMap() {
+	public HashMap<String, TopologyItem> getNetworkMap() {
 		return NetworkMap;
 	}
-	public void setNetworkMap(HashMap<String, String> networkMap) {
+	public void setNetworkMap(HashMap<String, TopologyItem> networkMap) {
 		NetworkMap = networkMap;
 	}
 	
